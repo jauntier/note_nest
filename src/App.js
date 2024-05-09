@@ -1,25 +1,50 @@
-import logo from './logo.svg';
+
 import './App.css';
+
+
+import PianoKeyboard from './Components/PianoKeyboard';
+
+import Home from './Components/Home';
+import { Route, Routes } from 'react-router-dom';
+
+import Dictionary from './Components/Dictionary';
+
+import DrawingBoard from './Components/DrawingBoard';
+import Sandbox from './Components/Sandbox';
+
+
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+   <div className="App">
+    <div className="App-header">
+
+
+
+<Routes>
+    <Route path="/" element={<Home/>}/>
+    <Route path="/webdev" element={<Sandbox/>}/>
+    <Route path="/musiccomp" element={<PianoKeyboard />}/>
+    <Route path="/urban" element={<Dictionary />}/>
+    <Route path="/draw" element={<DrawingBoard />}/>
+    
+
+      </Routes>
+
+
+
+ 
+
+</div>
+
+  </div>
   );
+ 
+ 
+
 }
 
 export default App;
