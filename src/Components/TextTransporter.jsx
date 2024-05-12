@@ -21,12 +21,12 @@ const TextTransporter = () => {
         type="text"
         value={inputText}
         onChange={handleInputChange}
-        placeholder="Type something..."
+        placeholder="Type your idea..."
       />
-      <button className="transport-button" onClick={handleTransportClick}>Transport Text</button>
+      <button className="transport-button" onClick={handleTransportClick}>Save idea</button>
       <div className="transported-texts-container">
         {transportedTexts.map((text, index) => (
-          <p className="transported-text" key={index}>Transported Text {index + 1}: {text}</p>
+          <p className="transported-text" key={index}>IDEA {index + 1}: {text}</p>
         ))}
       </div>
     </div>

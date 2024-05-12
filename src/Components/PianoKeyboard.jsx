@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
-import Key from './Key'
+import React, { Component } from 'react';
+import Key from './Key';
 import './stylefile.css';
 import _ from 'lodash';
 import { NOTES } from '../Global/constants';
 import './Piano.css';
-import RandomNumberGenerator from './RandomNumberGenerator'
+import RandomNumberGenerator from './RandomNumberGenerator';
 import TextTransporter from './TextTransporter';
 
 import {
   VALID_KEYS,
   KEY_TO_NOTE,
 } from '../Global/constants';
-
+import { Helmet } from 'react-helmet';
 
 export class PianoKeyboard extends Component {
   constructor(props) {
@@ -27,7 +27,6 @@ export class PianoKeyboard extends Component {
       noteAudio.play();
     }
   }
-
 
   handleKeyDown = (event) => {
     if (event.repeat) {
@@ -55,127 +54,71 @@ export class PianoKeyboard extends Component {
     }
   }
 
-
   componentDidMount = () => {
     window.addEventListener('keydown', this.handleKeyDown);
     window.addEventListener('keyup', this.handleKeyUp);
   }
 
-
   render() {
+    const keys = _.map(NOTES, (note, index) => (
+      <Key pressedKeys={this.state.pressedKeys} key={index} note={note} />
+    ));
 
+    const audioFiles = _.map(NOTES, (note, index) => (
+      <audio
+        id={note}
+        key={index}
+        src={`../../notes/${note}.mp3`}
+      />
+    ));
 
-    const keys = _.map(NOTES, (note, index) => {
-      return (
-
-        <Key pressedKeys={this.state.pressedKeys} key={index} note={note} />
-
-      )
-    });
-
-    const audioFiles = _.map(NOTES, (note, index) => {
-      return (
-        <audio
-          id={note}
-          key={index}
-          src={`../../notes/${note}.mp3`}
-        />
-      );
-    });
     const scalesData = [
-      
-
-
-      
-        { "note": "a", "scale": ["a", "b", "df", "d", "e", "gf", "af"] },
-        { "note": "bf", "scale": ["bf", "c", "d", "ef", "f", "g", "a"] },
-        { "note": "b", "scale": ["b", "df", "ef", "e", "gf", "af", "bf"] },
-        { "note": "c", "scale": ["c", "d", "e", "f", "g", "a", "b"] },
-        { "note": "df", "scale": ["df", "ef", "f", "gf", "af", "bf", "c"] },
-        { "note": "d", "scale": ["d", "e", "gf", "g", "a", "b", "df"] },
-        { "note": "ef", "scale": ["ef", "f", "g", "af", "bf", "c", "d"] },
-        { "note": "e", "scale": ["e", "gf", "af", "a", "b", "df", "ef"] },
-        { "note": "f", "scale": ["f", "g", "a", "bf", "c", "d", "e"] },
-        { "note": "gf", "scale": ["gf", "af", "bf", "b", "df", "ef", "f"] },
-        { "note": "g", "scale": ["g", "a", "b", "c", "d", "e", "gf"] },
-        { "note": "af", "scale": ["af", "bf", "c", "df", "ef", "f", "g"] }
-      
-      
+      { "note": "a", "scale": ["a", "b", "df", "d", "e", "gf", "af"] },
+      { "note": "bf", "scale": ["bf", "c", "d", "ef", "f", "g", "a"] },
+      { "note": "b", "scale": ["b", "df", "ef", "e", "gf", "af", "bf"] },
+      { "note": "c", "scale": ["c", "d", "e", "f", "g", "a", "b"] },
+      { "note": "df", "scale": ["df", "ef", "f", "gf", "af", "bf", "c"] },
+      { "note": "d", "scale": ["d", "e", "gf", "g", "a", "b", "df"] },
+      { "note": "ef", "scale": ["ef", "f", "g", "af", "bf", "c", "d"] },
+      { "note": "e", "scale": ["e", "gf", "af", "a", "b", "df", "ef"] },
+      { "note": "f", "scale": ["f", "g", "a", "bf", "c", "d", "e"] },
+      { "note": "gf", "scale": ["gf", "af", "bf", "b", "df", "ef", "f"] },
+      { "note": "g", "scale": ["g", "a", "b", "c", "d", "e", "gf"] },
+      { "note": "af", "scale": ["af", "bf", "c", "df", "ef", "f", "g"] }
     ];
 
-  
-
-
-    
-
     return (
-      <div>
-      <div className="div1">
-        <div className="pianok">
-        {keys}
-        </div>
-      </div>
-      <div>
-        {audioFiles}
-        </div>
-        <div className="div2">
-        <table className="table">
-  <tr>
-    <th className="th">Piano Note</th>
-    <th className="th">Letter to type into computer keyboard</th>
-  </tr>
-  <tr>
-    <td className="td">c</td>
-    <td className="td">z</td>
-  </tr>
-  <tr>
-    <td className="td">df</td>
-    <td className="td">s</td>
-  </tr>
-  <tr>
-    <td className="td">d</td>
-    <td className="td">x</td>
-  </tr>
-  <tr>
-    <td className="td">ef</td>
-    <td className="td">d</td>
-  </tr>
-  <tr>
-    <td className="td">e</td>
-    <td className="td">c</td>
-  </tr>
-  <tr>
-    <td className="td">f</td>
-    <td className="td">v</td>
-  </tr>
-  <tr>
-    <td className="td">gf</td>
-    <td className="td">g</td>
-  </tr>
-  <tr>
-    <td className="td">g</td>
-    <td className="td">b</td>
-  </tr>
-  <tr>
-    <td className="td">af</td>
-    <td className="td">h</td>
-  </tr>
-  <tr>
-    <td className="td">a</td>
-    <td className="td">n</td>
-  </tr>
-  <tr>
-    <td className="td">bf</td>
-    <td className="td">j</td>
-  </tr>
-  <tr>
-    <td className="td">b</td>
-    <td className="td">m</td>
-  </tr>
-</table>
+      <div className="mainmusic">
+        <Helmet>
+        <link href="https://fonts.googleapis.com/css2?family=Chela+One&family=Gideon+Roman&family=Kumar+One&family=Labrada:ital,wght@0,100..900;1,100..900&family=Langar&family=Lumanosimo&family=Oi&family=Purple+Purse&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Chela+One&family=Gideon+Roman&family=Kumar+One&family=Labrada:ital,wght@0,100..900;1,100..900&family=Langar&family=Lumanosimo&family=Oi&family=Purple+Purse&family=Smokum&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Gideon+Roman&display=swap" rel="stylesheet"></link>
+        <link href="https://fonts.googleapis.com/css2?family=Gideon+Roman&family=Langar&display=swap" rel="stylesheet"></link>
+        <link href="https://fonts.googleapis.com/css2?family=Chela+One&family=Gideon+Roman&family=Langar&family=Lumanosimo&family=Purple+Purse&display=swap" rel="stylesheet" />
+      </Helmet>
+      <header className="header">
+        <h1 className="title">NoteNest</h1>
+        <h3 className="h2x">Your virtual instructor</h3>
+      </header>
+      <div className="composerr">
+        <div className="keyboard-container">
+          <div className="piano-keys">
 
+            {keys}
+          </div>
         </div>
-
+        <div className="audio-files">
+          {audioFiles}
+        </div>
+        <div className="table-container">
+          <table className="piano-table">
+            {/* Table content */}
+          </table>
+        </div>
+        <div className="scales-table-container">
+        
         <table className="scalestable">
   <thead>
     <tr>
@@ -201,19 +144,18 @@ export class PianoKeyboard extends Component {
   </tbody>
 </table>
 
-
-
-<div><RandomNumberGenerator /></div>
-<div><TextTransporter /></div>
-
+          
+        </div>
+        <div className="random-number-generator-container">
+          <RandomNumberGenerator />
+        </div>
+        <div className="text-transporter-container">
+          <TextTransporter />
+        </div>
+      </div>
       </div>
     );
   }
 }
 
-
-
-export default PianoKeyboard
-
-
-
+export default PianoKeyboard;

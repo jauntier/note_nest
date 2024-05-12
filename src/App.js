@@ -11,6 +11,7 @@ import Dictionary from './Components/Dictionary';
 
 import DrawingBoard from './Components/DrawingBoard';
 import Sandbox from './Components/Sandbox';
+import PdfDownloadComponent from './Components/PdfDownloadComponent';
 
 
 
@@ -26,7 +27,7 @@ function App() {
 
 <Routes>
     <Route path="/" element={<Home/>}/>
-    <Route path="/webdev" element={<Sandbox/>}/>
+    <Route path="/webdev" element={<PdfDownloadComponent/>}/>
     <Route path="/musiccomp" element={<PianoKeyboard />}/>
     <Route path="/urban" element={<Dictionary />}/>
     <Route path="/draw" element={<DrawingBoard />}/>
