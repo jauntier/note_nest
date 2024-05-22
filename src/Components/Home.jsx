@@ -40,19 +40,21 @@ function Home() {
 
         <section className="excerpt">
         <div className="aesthetic-paragraph"> 
-          <h2 className="h2">Urban Dictionary</h2>
-          <p className="p">Find out how the global society defines your favorite words and phrases.</p>
+          <h2 className="h2">Booklist Mode</h2>
+          <p className="p">Find suggestions for your next read.</p>
           <Button variant="secondary"><Link to="/urban" className="linkx">Explore</Link></Button>{' '}
           </div>
         </section>
 
         <section className="excerpt">
         <div className="aesthetic-paragraph"> 
-          <h2 className="h2">Your palette</h2>
-          <p className="p">Test out your artistic skills</p>
+          <h2 className="h2">Canvas Mode</h2>
+          <p className="p">Test out your artistic skills.</p>
           <Button variant="secondary"><Link to="/draw" className="linkx">Start drawing</Link></Button>{' '}
           </div>
         </section>
+
+       
 
       </main>
       <footer className="footer">

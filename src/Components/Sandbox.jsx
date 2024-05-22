@@ -22,7 +22,7 @@ const Sandbox = () => {
   const [javascript, setJavascript] = useState('');
 
   return (
-    <div >
+    <div>
       <Helmet>
         <link href="https://fonts.googleapis.com/css2?family=Chela+One&family=Gideon+Roman&family=Kumar+One&family=Labrada:ital,wght@0,100..900;1,100..900&family=Langar&family=Lumanosimo&family=Oi&family=Purple+Purse&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Chela+One&family=Gideon+Roman&family=Kumar+One&family=Labrada:ital,wght@0,100..900;1,100..900&family=Langar&family=Lumanosimo&family=Oi&family=Purple+Purse&family=Smokum&display=swap" rel="stylesheet" />
@@ -34,25 +34,25 @@ const Sandbox = () => {
       </Helmet>
       <header className="header">
         <h1 className="title">NoteNest</h1>
-        <h3 className="h2x">Your virtual instructor</h3>
+        <h3 className="h2x">Your sandbox environment</h3>
       </header>
 
-      <StyledContainer>
-        <div id="pdf-content">
+      <StyledContainer id="pdf-content">
+        <div >
         <div className="thestable">
-          <table>
+          <table className="sandboxtable">
             <tbody>
               <tr>
                 <th className="thsand">HTML</th>
                 <th className="thsand">CSS</th>
                 <th className="thsand">JavaScript</th>
-                <th className="thsand">Output</th>
+                
               </tr>
               <tr>
                 <td>
                   <StyledInput
                     placeholder="Enter HTML"
-                    className="box"
+                    className="boxx"
                     value={html}
                     onChange={(e) => setHtml(e.target.value)}
                   />
@@ -60,7 +60,7 @@ const Sandbox = () => {
                 <td>
                   <StyledInput
                     placeholder="Enter CSS"
-                    className="box"
+                    className="boxx"
                     value={css}
                     onChange={(e) => setCss(e.target.value)}
                   />
@@ -68,22 +68,28 @@ const Sandbox = () => {
                 <td>
                   <StyledInput
                     placeholder="Enter JavaScript"
-                    className="box"
+                    className="boxx"
                     value={javascript}
                     onChange={(e) => setJavascript(e.target.value)}
                   />
                 </td>
-                <td>
-                  <iframe
-                    className="box"
-                    title="sandbox"
-                    srcDoc={`<html><head><style>${css}</style></head><body>${html}<script>${javascript}</script></body></html>`}
-                  />
-                </td>
+                
               </tr>
             </tbody>
           </table>
           </div>
+          <br></br>
+          <div className="thestableoutput">
+          <iframe
+                    className="box"
+                    title="sandbox"
+                    srcDoc={`<html><head><style>${css}</style></head><body>${html}<script>${javascript}</script></body></html>`}
+                  />
+
+                 
+                  </div>
+                 
+          
         </div>
       </StyledContainer>
     </div>

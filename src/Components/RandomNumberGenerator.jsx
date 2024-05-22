@@ -11,7 +11,8 @@ const RandomNumberGenerator = () => {
   };
 
   return (
-    <div className="random-container">
+    
+    <div>
       <button className="generate-button" onClick={generateRandomNumbers}>Generate Random Numbers</button>
       <div className="random-numbers-container">
         {randomNumbers.length > 0 && (

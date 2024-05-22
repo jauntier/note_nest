@@ -15,7 +15,8 @@ const TextTransporter = () => {
   };
 
   return (
-    <div className="notebook-container">
+ 
+    <div>
       <input
         className="transport-input"
         type="text"

@@ -18,6 +18,8 @@ export class PianoKeyboard extends Component {
     super(props);
     this.state = {
       pressedKeys: [],
+      creatorName: '', // State to hold the creator's name
+      submittedName: ''// State to hold the creator's name
     };
   }
 
@@ -54,6 +56,16 @@ export class PianoKeyboard extends Component {
     }
   }
 
+
+  handleNameChange = (event) => {
+    this.setState({ creatorName: event.target.value });
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.setState({ submittedName: this.state.creatorName });
+  }
+
   componentDidMount = () => {
     window.addEventListener('keydown', this.handleKeyDown);
     window.addEventListener('keyup', this.handleKeyUp);
@@ -88,74 +100,86 @@ export class PianoKeyboard extends Component {
     ];
 
     return (
-      <div className="mainmusic">
+      <div className="body">
         <Helmet>
-        <link href="https://fonts.googleapis.com/css2?family=Chela+One&family=Gideon+Roman&family=Kumar+One&family=Labrada:ital,wght@0,100..900;1,100..900&family=Langar&family=Lumanosimo&family=Oi&family=Purple+Purse&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Chela+One&family=Gideon+Roman&family=Kumar+One&family=Labrada:ital,wght@0,100..900;1,100..900&family=Langar&family=Lumanosimo&family=Oi&family=Purple+Purse&family=Smokum&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Gideon+Roman&display=swap" rel="stylesheet"></link>
-        <link href="https://fonts.googleapis.com/css2?family=Gideon+Roman&family=Langar&display=swap" rel="stylesheet"></link>
-        <link href="https://fonts.googleapis.com/css2?family=Chela+One&family=Gideon+Roman&family=Langar&family=Lumanosimo&family=Purple+Purse&display=swap" rel="stylesheet" />
-      </Helmet>
-      <header className="header">
-        <h1 className="title">NoteNest</h1>
-        <h3 className="h2x">Your virtual instructor</h3>
-      </header>
-      <div className="composerr">
-        <div className="keyboard-container">
-          <div className="piano-keys">
-
-            {keys}
+          <link href="https://fonts.googleapis.com/css2?family=Chela+One&family=Gideon+Roman&family=Kumar+One&family=Labrada:ital,wght@0,100..900;1,100..900&family=Langar&family=Lumanosimo&family=Oi&family=Purple+Purse&display=swap" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css2?family=Chela+One&family=Gideon+Roman&family=Kumar+One&family=Labrada:ital,wght@0,100..900;1,100..900&family=Langar&family=Lumanosimo&family=Oi&family=Purple+Purse&family=Smokum&display=swap" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css2?family=Gideon+Roman&display=swap" rel="stylesheet"></link>
+          <link href="https://fonts.googleapis.com/css2?family=Gideon+Roman&family=Langar&display=swap" rel="stylesheet"></link>
+          <link href="https://fonts.googleapis.com/css2?family=Chela+One&family=Gideon+Roman&family=Langar&family=Lumanosimo&family=Purple+Purse&display=swap" rel="stylesheet" />
+        </Helmet>
+        <header className="header">
+          <h1 className="title">NoteNest</h1>
+          <h3 className="h2x">Your Song Lab</h3>
+        </header>
+        <div className="container">
+          <div className="composer">
+            <div className="keyboard-container">
+              <div className="piano-keys">
+                {keys}
+              </div>
+            </div>
+            <div className="audio-files">
+              {audioFiles}
+            </div>
+            <div className="scales-table-container">
+              <table className="scalestable">
+                <thead>
+                  <tr>
+                    <th className="th">KEY</th>
+                    <th className="th">1st</th>
+                    <th className="th">2nd</th>
+                    <th className="th">3rd</th>
+                    <th className="th">4th</th>
+                    <th className="th">5th</th>
+                    <th className="th">6th</th>
+                    <th className="th">7th</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {scalesData.map(({ note, scale }) => (
+                    <tr key={note}>
+                      <td className="td">{note}</td>
+                      {scale.map((note, index) => (
+                        <td key={index} className="td">{note}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="excerpt">
+              <div >
+                <RandomNumberGenerator />
+              </div>
+              </div>
+              <div className="excerpt">
+              <div >
+                <TextTransporter />
+              
+              </div>
+            </div>
           </div>
         </div>
-        <div className="audio-files">
-          {audioFiles}
-        </div>
-        <div className="table-container">
-          <table className="piano-table">
-            {/* Table content */}
-          </table>
-        </div>
-        <div className="scales-table-container">
-        
-        <table className="scalestable">
-  <thead>
-    <tr>
-      <th className="th">KEY</th>
-      <th className="th">1st</th>
-      <th className="th">2nd</th>
-      <th className="th">3rd</th>
-      <th className="th">4th</th>
-      <th className="th">5th</th>
-      <th className="th">6th</th>
-      <th className="th">7th</th>
-    </tr>
-  </thead>
-  <tbody>
-    {scalesData.map(({ note, scale }) => (
-      <tr key={note}>
-        <td className="td">{note}</td>
-        {scale.map((note, index) => (
-          <td key={index} className="td">{note}</td>
-        ))}
-      </tr>
-    ))}
-  </tbody>
-</table>
-
-          
-        </div>
-        <div className="random-number-generator-container">
-          <RandomNumberGenerator />
-        </div>
-        <div className="text-transporter-container">
-          <TextTransporter />
-        </div>
-      </div>
+          <footer className="footer">
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              className="box"
+              placeholder="Your Name"
+              value={this.state.creatorName}
+              onChange={this.handleNameChange}
+            />
+            <button type="submit">Submit</button>
+          </form>
+          <p className="p">Created with love by {this.state.submittedName || '(YOUR NAME)'}</p></footer>
       </div>
     );
   }
 }
 
 export default PianoKeyboard;
+
+
