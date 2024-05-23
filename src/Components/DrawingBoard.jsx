@@ -1,7 +1,17 @@
+
+
+
+
+
+
+
+
+
+
+
 import React, { useState } from 'react';
 import { Stage, Layer, Line, Rect } from 'react-konva';
 import { Helmet } from 'react-helmet';
-
 
 const DrawingBoard = () => {
   const [lines, setLines] = useState([]);
@@ -41,18 +51,18 @@ const DrawingBoard = () => {
 
   return (
     <div style={styles.container}>
-    <div style={{ textAlign: 'center' }}> 
-    
+      <div style={{textAlign: 'center'}}>
       <Helmet>
-        <link href="https://fonts.googleapis.com/css2?family=Chela+One&family=Gideon+Roman&family=Kumar+One&family=Labrada:ital,wght@0,100..900;1,100..900&family=Langar&family=Lumanosimo&family=Oi&family=Purple+Purse&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Chela+One&family=Gideon+Roman&family=Langar&family=Lumanosimo&family=Purple+Purse&display=swap" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Chela+One&family=Gideon+Roman&family=Kumar+One&family=Labrada:ital,wght@0,100..900;1,100..900&family=Langar&family=Lumanosimo&family=Oi&family=Purple+Purse&family=Smokum&family=Viga&display=swap"
+          rel="stylesheet"
+        />
       </Helmet>
-      <header className="header" style={{marginBottom: '30px'}}>
+      <header className="header" style={{ marginBottom: '30px' }}>
         <h1 className="title">NoteNest</h1>
         <h3 className="h2x">Your drawing board</h3>
       </header>
-      
-      <div style={{ display: 'inline-block' , marginBottom:'20px'}}> 
+      <div style={{ display: 'inline-block', marginBottom: '20px' }} id="pdf-content-y">
         <Stage
           width={800}
           height={600}
@@ -62,14 +72,7 @@ const DrawingBoard = () => {
           style={{ border: '1px solid black' }}
         >
           <Layer>
-          
-            <Rect
-              x={0}
-              y={0}
-              width={800}
-              height={600}
-              fill="#FFFFFF"
-            />
+            <Rect x={0} y={0} width={800} height={600} fill="#FFFFFF" />
             {lines.map((line, i) => (
               <Line
                 key={i}
@@ -85,7 +88,7 @@ const DrawingBoard = () => {
       </div>
       <div style={styles.canvasContainer}>
         <div style={styles.canvas}>
-      <button onClick={() => setColor('#000000')} style={{ backgroundColor: '#000000', color: '#FFFFFF', border: '2px solid #000000', borderRadius: '5px', padding: '10px', margin: '5px', fontFamily: 'Arial', fontWeight: 'bold' }}>Black</button>
+        <button onClick={() => setColor('#000000')} style={{ backgroundColor: '#000000', color: '#FFFFFF', border: '2px solid #000000', borderRadius: '5px', padding: '10px', margin: '5px', fontFamily: 'Arial', fontWeight: 'bold' }}>Black</button>
 <button onClick={() => setColor('#ff0000')} style={{ backgroundColor: '#ff0000', color: '#FFFFFF', border: '2px solid #ff0000', borderRadius: '5px', padding: '10px', margin: '5px', fontFamily: 'Arial', fontWeight: 'bold' }}>Red</button>
 <button onClick={() => setColor('#ff7f00')} style={{ backgroundColor: '#ff7f00', color: '#FFFFFF', border: '2px solid #ff7f00', borderRadius: '5px', padding: '10px', margin: '5px', fontFamily: 'Arial', fontWeight: 'bold' }}>Orange</button>
 <button onClick={() => setColor('#ffff00')} style={{ backgroundColor: '#ffff00', color: '#000000', border: '2px solid #ffff00', borderRadius: '5px', padding: '10px', margin: '5px', fontFamily: 'Arial', fontWeight: 'bold' }}>Yellow</button>
@@ -106,43 +109,39 @@ const DrawingBoard = () => {
 <button onClick={() => setColor('#adff2f')} style={{ backgroundColor: '#adff2f', color: '#000000', border: '2px solid #adff2f', borderRadius: '5px', padding: '10px', margin: '5px', fontFamily: 'Arial', fontWeight: 'bold' }}>Green Yellow</button>
 <button onClick={() => setColor('#ff69b4')} style={{ backgroundColor: '#ff69b4', color: '#000000', border: '2px solid #ff69b4', borderRadius: '5px', padding: '10px', margin: '5px', fontFamily: 'Arial', fontWeight: 'bold' }}>Hot Pink</button>
 <button onClick={toggleEraser} style={{  textShadow: isErasing ? '0 0 8px black' : 'none', backgroundColor: isErasing ? 'lightgray' : 'white', color: isErasing ? 'white' : 'black', border: '2px solid black', borderRadius: '5px', padding: '10px', margin: '5px', fontFamily: 'Arial', fontWeight: 'bold' }}>{isErasing ? 'Eraser On' : 'Eraser Off'}</button>
-</div>
+          
+        </div>
       </div>
-      <div>
       <button
-  onClick={clearCanvas}
-  style={{
-    background: 'linear-gradient(135deg, #ffffff, #f0f0f0)', 
-    color: '#000000', 
-    border: '2px solid #cccccc', 
-    borderRadius: '10px', 
-    padding: '10px 20px', 
-    marginTop: '30px', 
-    fontFamily: 'Arial, sans-serif', 
-    fontWeight: 'bold', 
-    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)', 
-    cursor: 'pointer', 
-    transition: 'all 0.3s ease', 
-  }}
-  onMouseOver={(e) => {
-    e.target.style.background = 'linear-gradient(135deg, #f0f0f0, #e0e0e0)'; 
-    e.target.style.transform = 'scale(1.05)'; 
-  }}
-  onMouseOut={(e) => {
-    e.target.style.background = 'linear-gradient(135deg, #ffffff, #f0f0f0)'; 
-    e.target.style.transform = 'scale(1)'; 
-  }}
->
-  Clear
-</button>
-
-
-      </div>
-      </div>
+        onClick={clearCanvas}
+        style={{
+          background: 'linear-gradient(135deg, #ffffff, #f0f0f0)',
+          color: '#000000',
+          border: '2px solid #cccccc',
+          borderRadius: '10px',
+          padding: '10px 20px',
+          marginTop: '30px',
+          fontFamily: 'Arial, sans-serif',
+          fontWeight: 'bold',
+          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+          cursor: 'pointer',
+          transition: 'all 0.3s ease'
+        }}
+        onMouseOver={(e) => {
+          e.target.style.background = 'linear-gradient(135deg, #f0f0f0, #e0e0e0)';
+          e.target.style.transform = 'scale(1.05)';
+        }}
+        onMouseOut={(e) => {
+          e.target.style.background = 'linear-gradient(135deg, #ffffff, #f0f0f0)';
+          e.target.style.transform = 'scale(1)';
+        }}
+      >
+        Clear
+      </button>
+    </div>
     </div>
   );
 };
-
 
 const styles = {
   container: {

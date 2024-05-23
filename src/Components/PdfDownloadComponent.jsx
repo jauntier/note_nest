@@ -1,25 +1,45 @@
 import React from 'react';
-import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import Sandbox from './Sandbox';
 import { Helmet } from 'react-helmet';
 
 const PdfDownloadComponent = () => {
   const handleDownloadPDF = () => {
-    const input = document.getElementById('pdf-content');
+    const pdf = new jsPDF('l', 'mm', 'a4'); // Set to landscape mode
+    const pdfContent = document.getElementById('pdf-content');
 
-    html2canvas(input).then((canvas) => {
-      
-      const pdfWidth = 297; 
-      const pdfHeight = 210; 
-      const imgWidth = pdfWidth;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    
+    const pdfWidth = 259; 
+    const pdfHeight = 181; 
 
-      const pdf = new jsPDF('l', 'mm', 'a4');
-      const positionY = (pdfHeight - imgHeight) / 2; 
+    pdf.html(pdfContent, {
+      callback: function (pdf) {
+        const contentWidth = pdfContent.offsetWidth * 0.54; 
+        const contentHeight = pdfContent.offsetHeight * 0.54; 
 
-      pdf.addImage(canvas, 'PNG', 0, positionY, imgWidth, imgHeight);
-      pdf.save('downloaded-file.pdf');
+    
+        const posX = (pdfWidth - (contentWidth / 2)) / 2; 
+        const posY = (pdfHeight - (contentHeight / 2)) / 2; 
+
+        // Clear the page and re-add HTML content at the centered position
+        pdf.deletePage(1);
+        pdf.addPage('a4', 'l');
+        pdf.html(pdfContent, {
+          callback: function (pdf) {
+            pdf.save('downloaded-file.pdf');
+          },
+          x: posX,
+          y: posY,
+          html2canvas: {
+            scale: 0.31 // Adjust scale to fit content correctly
+          }
+        });
+      },
+      x: 0,
+      y: 0,
+      html2canvas: {
+        scale: 0.31 // Adjust scale to fit content correctly
+      }
     });
   };
 
@@ -41,3 +61,7 @@ const PdfDownloadComponent = () => {
 };
 
 export default PdfDownloadComponent;
+
+
+
+

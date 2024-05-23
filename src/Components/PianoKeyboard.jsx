@@ -56,7 +56,6 @@ export class PianoKeyboard extends Component {
     }
   }
 
-
   handleNameChange = (event) => {
     this.setState({ creatorName: event.target.value });
   }
@@ -157,8 +156,8 @@ export class PianoKeyboard extends Component {
               </div>
               <div className="excerpt">
               <div >
+                <div id="pdf-content">
                 <TextTransporter />
-              
               </div>
             </div>
           </div>
@@ -168,18 +167,17 @@ export class PianoKeyboard extends Component {
             <input
               type="text"
               className="box"
-              placeholder="Your Name"
+              placeholder="Sign"
               value={this.state.creatorName}
               onChange={this.handleNameChange}
             />
-            <button type="submit">Submit</button>
+            <button type="submit">Submit signature</button>
           </form>
-          <p className="p">Created with love by {this.state.submittedName || '(YOUR NAME)'}</p></footer>
+          <p className="p">Created with love by {this.state.submittedName || 'the person who created it'}</p></footer>
+          </div>
       </div>
     );
   }
 }
 
 export default PianoKeyboard;
-
-

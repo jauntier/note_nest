@@ -12,6 +12,8 @@ import Dictionary from './Components/Dictionary';
 import DrawingBoard from './Components/DrawingBoard';
 
 import PdfDownloadComponent from './Components/PdfDownloadComponent';
+import PDFKey from './Components/PDFKey';
+import PDFDraw from './Components/PDFDraw';
 
 
 
@@ -29,9 +31,9 @@ function App() {
 <Routes>
     <Route path="/" element={<Home/>}/>
     <Route path="/webdev" element={<PdfDownloadComponent/>}/>
-    <Route path="/musiccomp" element={<PianoKeyboard />}/>
+    <Route path="/musiccomp" element={<PDFKey />}/>
     <Route path="/urban" element={<Dictionary />}/>
-    <Route path="/draw" element={<DrawingBoard />}/>
+    <Route path="/draw" element={<PDFDraw />}/>
     
     
 
